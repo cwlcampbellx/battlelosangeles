@@ -7,333 +7,386 @@
         body {
             margin: 0;
             overflow: hidden;
-            background: #000;
+            background: linear-gradient(to bottom, #0a0a23, #1a1a3d);
             font-family: 'Courier New', monospace;
         }
         #gameCanvas {
             position: relative;
             width: 800px;
             height: 400px;
-            background: #000;
-            border: 4px solid #ccc;
+            background: linear-gradient(to bottom, #2a2a52, #000);
+            border: 4px solid #00ff00;
             margin: 20px auto;
             overflow: hidden;
             image-rendering: pixelated;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
         }
         #gameCanvas::before {
             content: '';
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400"><rect width="800" height="400" fill="black"/><circle cx="10" cy="20" r="2" fill="white"/><circle cx="50" cy="50" r="3" fill="white"/><circle cx="80" cy="15" r="1" fill="white"/><circle cx="120" cy="70" r="2" fill="white"/><circle cx="150" cy="30" r="3" fill="white"/><circle cx="200" cy="90" r="1" fill="white"/><circle cx="250" cy="10" r="2" fill="white"/><circle cx="300" cy="60" r="3" fill="white"/><circle cx="350" cy="40" r="1" fill="white"/><circle cx="400" cy="80" r="2" fill="white"/><circle cx="450" cy="20" r="3" fill="white"/><circle cx="500" cy="70" r="1" fill="white"/><circle cx="550" cy="30" r="2" fill="white"/><circle cx="600" cy="90" r="3" fill="white"/><circle cx="650" cy="15" r="1" fill="white"/><circle cx="700" cy="60" r="2" fill="white"/><circle cx="750" cy="40" r="3" fill="white"/><circle cx="20" cy="150" r="1" fill="white"/><circle cx="100" cy="200" r="2" fill="white"/><circle cx="180" cy="250" r="3" fill="white"/><circle cx="260" cy="300" r="1" fill="white"/><circle cx="340" cy="350" r="2" fill="white"/><circle cx="420" cy="120" r="3" fill="white"/><circle cx="500" cy="180" r="1" fill="white"/><circle cx="580" cy="240" r="2" fill="white"/><circle cx="660" cy="300" r="3" fill="white"/><circle cx="740" cy="360" r="1" fill="white"/><path d="M0,400 Q100,300 200,350 T400,300 T600,350 T800,300 V400 H0 Z" fill="#008800"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400"><rect width="800" height="400" fill="transparent"/><circle cx="10" cy="20" r="3" fill="white" opacity="0.8"/><circle cx="50" cy="50" r="4" fill="white" opacity="0.9"/><circle cx="80" cy="15" r="2" fill="white" opacity="0.7"/><circle cx="120" cy="70" r="3" fill="white" opacity="0.8"/><circle cx="150" cy="30" r="4" fill="white" opacity="0.9"/><circle cx="200" cy="90" r="2" fill="white" opacity="0.7"/><circle cx="250" cy="10" r="3" fill="white" opacity="0.8"/><circle cx="300" cy="60" r="4" fill="white" opacity="0.9"/><circle cx="350" cy="40" r="2" fill="white" opacity="0.7"/><circle cx="400" cy="80" r="3" fill="white" opacity="0.8"/><circle cx="450" cy="20" r="4" fill="white" opacity="0.9"/><circle cx="500" cy="70" r="2" fill="white" opacity="0.7"/><circle cx="550" cy="30" r="3" fill="white" opacity="0.8"/><circle cx="600" cy="90" r="4" fill="white" opacity="0.9"/><circle cx="650" cy="15" r="2" fill="white" opacity="0.7"/><circle cx="700" cy="60" r="3" fill="white" opacity="0.8"/><circle cx="750" cy="40" r="4" fill="white" opacity="0.9"/><path d="M0,400 Q100,350 200,375 T400,350 T600,375 T800,350 V400 H0 Z" fill="rgba(0, 50, 0, 0.9)" opacity="0.8"/></svg>');
             pointer-events: none;
             z-index: -1;
         }
         .ufo {
             position: absolute;
-            width: 60px;
-            height: 30px;
-            background: #808080;
+            width: 70px;
+            height: 35px;
+            background: radial-gradient(circle at 50% 20%, #a0a0a0, #404040);
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 15px #808080, 0 5px 5px rgba(0, 0, 0, 0.7);
-            transition: background 0.5s ease-in-out;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.7), 0 10px 15px rgba(0, 0, 0, 0.8), inset 0 5px 10px rgba(255, 255, 255, 0.3);
             z-index: 5;
+            transition: background 0.5s ease-in-out, transform 0.2s ease;
         }
         .ufo::before {
             content: '';
             position: absolute;
             top: 10px;
-            left: 0;
+            left: 5px;
             width: 60px;
-            height: 10px;
-            background: red;
-            animation: pulse 0.8s infinite;
+            height: 15px;
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.8), rgba(255, 0, 0, 0.8));
+            border-radius: 50%;
+            animation: pulse 1s infinite;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
         }
         .ufo::after {
             content: '';
             position: absolute;
-            top: -5px;
-            left: 20px;
+            top: -10px;
+            left: 25px;
             width: 20px;
-            height: 10px;
-            background: #999;
+            height: 15px;
+            background: linear-gradient(#d0d0d0, #808080);
             border-radius: 50% 50% 0 0;
+            box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.5);
         }
         .ufo.crash {
-            background: #ff4500;
+            background: radial-gradient(circle at 50% 20%, #ff4500, #8b0000);
+            transform: rotate(20deg);
+            box-shadow: 0 0 30px rgba(255, 69, 0, 0.9), 0 10px 20px rgba(0, 0, 0, 0.9);
         }
         @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
         }
         .shield {
             position: absolute;
-            width: 70px;
-            height: 40px;
-            background: radial-gradient(rgba(0, 255, 255, 0.5), rgba(0, 255, 255, 0));
+            width: 80px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.6), rgba(0, 255, 255, 0));
             border-radius: 50%;
-            box-shadow: 0 0 20px #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), inset 0 0 15px rgba(0, 255, 255, 0.4);
             display: none;
             z-index: 6;
+            animation: shieldPulse 1.5s infinite;
+        }
+        @keyframes shieldPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
         }
         .blueBeam {
             position: absolute;
-            width: 20px;
-            background: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgba(0, 0, 255, 0.3));
-            box-shadow: 0 0 15px #0000ff, 0 0 25px #0000ff;
+            width: 25px;
+            background: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgba(0, 0, 255, 0));
+            box-shadow: 0 0 20px #0000ff, 0 0 40px rgba(0, 0, 255, 0.7);
             display: none;
             z-index: 4;
+            animation: beamFlicker 0.2s infinite;
         }
         .redBeam {
             position: absolute;
-            width: 20px;
-            background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
-            box-shadow: 0 0 15px #ff0000, 0 0 25px #ff0000;
+            width: 25px;
+            background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9), rgba(255, 0, 0, 0));
+            box-shadow: 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.7);
             display: none;
             z-index: 4;
+            animation: beamFlicker 0.2s infinite;
+        }
+        @keyframes beamFlicker {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 0.7; }
         }
         .city {
             position: absolute;
             width: 2400px;
-            height: 60px;
-            background: #333 repeating-linear-gradient(90deg, transparent, transparent 10px, white 10px, white 15px);
+            height: 80px;
+            background: linear-gradient(to bottom, #2f2f2f, #1a1a1a) repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(255, 255, 255, 0.3) 15px, rgba(255, 255, 255, 0.3) 20px);
             bottom: 0;
             z-index: 2;
+            box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.8);
         }
         .city::before {
             content: '';
             position: absolute;
             width: 2400px;
-            height: 10px;
-            background: #555;
+            height: 15px;
+            background: linear-gradient(#555, #333);
             top: 0;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
         }
         .city::after {
             content: '';
             position: absolute;
             width: 2400px;
-            height: 10px;
-            background: #555;
+            height: 15px;
+            background: linear-gradient(#333, #1a1a1a);
             bottom: 0;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5);
         }
         .city-detail {
             position: absolute;
-            background: #444;
+            background: linear-gradient(45deg, #444, #666);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
         }
         .person {
             position: absolute;
-            width: 15px;
-            height: 30px;
-            top: 340px;
+            width: 18px;
+            height: 35px;
+            top: 335px;
             z-index: 3;
+            background: linear-gradient(to bottom, #8b4513, #5c4033);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
         .person::before {
             content: '';
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             background: inherit;
             border-radius: 50%;
-            top: -12px;
-            left: 2.5px;
+            top: -14px;
+            left: 3px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         .person::after {
             content: '';
             position: absolute;
-            width: 5px;
-            height: 12px;
+            width: 6px;
+            height: 14px;
             background: inherit;
-            top: 2px;
-            left: -5px;
+            top: 3px;
+            left: -6px;
+            border-radius: 2px;
         }
         .person .right-arm {
             position: absolute;
-            width: 5px;
-            height: 12px;
+            width: 6px;
+            height: 14px;
             background: inherit;
-            top: 2px;
-            right: -5px;
+            top: 3px;
+            right: -6px;
+            border-radius: 2px;
+            animation: swingArm 0.5s infinite;
         }
         .person .left-leg {
             position: absolute;
-            width: 5px;
-            height: 12px;
+            width: 6px;
+            height: 14px;
             background: inherit;
-            bottom: -6px;
-            left: 2px;
+            bottom: -7px;
+            left: 3px;
+            border-radius: 2px;
             animation: walkLeg 0.5s steps(2) infinite;
         }
         .person .right-leg {
             position: absolute;
-            width: 5px;
-            height: 12px;
+            width: 6px;
+            height: 14px;
             background: inherit;
-            bottom: -6px;
-            right: 2px;
+            bottom: -7px;
+            right: 3px;
+            border-radius: 2px;
             animation: walkLeg 0.5s steps(2) infinite reverse;
         }
         .police {
             position: absolute;
-            width: 15px;
-            height: 30px;
-            background: #0000ff;
-            top: 340px;
+            width: 18px;
+            height: 35px;
+            background: linear-gradient(to bottom, #000080, #0000cd);
+            top: 335px;
             z-index: 3;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 205, 0.5);
         }
         .police::before {
             content: '';
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #0000ff;
+            width: 12px;
+            height: 12px;
+            background: #000080;
             border-radius: 50%;
-            top: -12px;
-            left: 2.5px;
+            top: -14px;
+            left: 3px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         .police::after {
             content: '';
             position: absolute;
-            width: 14px;
-            height: 6px;
-            background: #ffff00;
-            top: -16px;
-            left: 0.5px;
-            border-radius: 2px 2px 0 0;
-            box-shadow: inset 0 2px 0 #666;
+            width: 16px;
+            height: 8px;
+            background: linear-gradient(#ffd700, #ffa500);
+            top: -18px;
+            left: 1px;
+            border-radius: 3px 3px 0 0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         .police .right-arm {
             position: absolute;
-            width: 5px;
-            height: 12px;
-            background: #0000ff;
-            top: 2px;
-            right: -5px;
+            width: 6px;
+            height: 14px;
+            background: #000080;
+            top: 3px;
+            right: -6px;
+            border-radius: 2px;
             animation: runArm 0.4s steps(2) infinite;
         }
         .police .left-leg {
             position: absolute;
-            width: 5px;
-            height: 12px;
-            background: #0000ff;
-            bottom: -6px;
-            left: 2px;
+            width: 6px;
+            height: 14px;
+            background: #000080;
+            bottom: -7px;
+            left: 3px;
+            border-radius: 2px;
             animation: runLeg 0.4s steps(2) infinite;
         }
         .police .right-leg {
             position: absolute;
-            width: 5px;
-            height: 12px;
-            background: #0000ff;
-            bottom: -6px;
-            right: 2px;
+            width: 6px;
+            height: 14px;
+            background: #000080;
+            bottom: -7px;
+            right: 3px;
+            border-radius: 2px;
             animation: runLeg 0.4s steps(2) infinite reverse;
         }
         .military {
             position: absolute;
-            width: 15px;
-            height: 30px;
-            background: #006600;
-            top: 340px;
+            width: 18px;
+            height: 35px;
+            background: linear-gradient(to bottom, #006400, #003300);
+            top: 335px;
             z-index: 3;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 100, 0, 0.5);
         }
         .military::before {
             content: '';
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #006600;
+            width: 12px;
+            height: 12px;
+            background: #006400;
             border-radius: 50%;
-            top: -12px;
-            left: 2.5px;
+            top: -14px;
+            left: 3px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         .military::after {
             content: '';
             position: absolute;
-            width: 14px;
-            height: 8px;
-            background: #003300;
-            top: -16px;
-            left: 0.5px;
+            width: 16px;
+            height: 10px;
+            background: linear-gradient(#004d00, #002600);
+            top: -18px;
+            left: 1px;
             border-radius: 4px 4px 0 0;
-            box-shadow: inset 0 -2px 0 #002200;
+            box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.4);
         }
         .military .right-arm {
             position: absolute;
-            width: 5px;
-            height: 12px;
-            background: #006600;
-            top: 2px;
-            right: -5px;
+            width: 6px;
+            height: 14px;
+            background: #006400;
+            top: 3px;
+            right: -6px;
+            border-radius: 2px;
             animation: runArm 0.3s steps(2) infinite;
         }
         .military .left-leg {
             position: absolute;
-            width: 5px;
-            height: 12px;
-            background: #006600;
-            bottom: -6px;
-            left: 2px;
+            width: 6px;
+            height: 14px;
+            background: #006400;
+            bottom: -7px;
+            left: 3px;
+            border-radius: 2px;
             animation: runLeg 0.3s steps(2) infinite;
         }
         .military .right-leg {
             position: absolute;
-            width: 5px;
-            height: 12px;
-            background: #006600;
-            bottom: -6px;
-            right: 2px;
+            width: 6px;
+            height: 14px;
+            background: #006400;
+            bottom: -7px;
+            right: 3px;
+            border-radius: 2px;
             animation: runLeg 0.3s steps(2) infinite reverse;
         }
+        @keyframes swingArm {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(30deg); }
+        }
         @keyframes walkLeg {
-            0% { transform: translateX(0); }
-            50% { transform: translateX(2px); }
-            100% { transform: translateX(0); }
-        }
-        @keyframes runArm {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(20deg); }
-            100% { transform: rotate(0deg); }
-        }
-        @keyframes runLeg {
             0% { transform: translateX(0); }
             50% { transform: translateX(3px); }
             100% { transform: translateX(0); }
         }
+        @keyframes runArm {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(25deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @keyframes runLeg {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(4px); }
+            100% { transform: translateX(0); }
+        }
         .bullet {
             position: absolute;
-            width: 5px;
-            height: 10px;
-            background: #fff;
-            border-radius: 2px;
-            display: none;
-            z-index: 4;
-        }
-        .military-bullet {
-            position: absolute;
-            width: 8px;
-            height: 15px;
-            background: #ff0;
+            width: 6px;
+            height: 12px;
+            background: linear-gradient(#fff, #ccc);
             border-radius: 3px;
             display: none;
             z-index: 4;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+        }
+        .military-bullet {
+            position: absolute;
+            width: 10px;
+            height: 18px;
+            background: linear-gradient(#ffff00, #ff9900);
+            border-radius: 4px;
+            display: none;
+            z-index: 4;
+            box-shadow: 0 0 8px rgba(255, 255, 0, 0.7);
         }
         .landingZone {
             position: absolute;
-            width: 100px;
-            height: 10px;
-            background: linear-gradient(#ffff00, #cc0);
-            border: 2px dashed #cc0;
-            top: 360px;
+            width: 120px;
+            height: 15px;
+            background: linear-gradient(90deg, #ffff00, #ffcc00);
+            border: 3px dashed #ff9900;
+            top: 355px;
             z-index: 2;
+            box-shadow: 0 0 15px rgba(255, 255, 0, 0.6);
         }
         #ui {
             position: absolute;
             top: 10px;
             left: 10px;
-            color: #fff;
-            font-size: 16px;
-            text-shadow: 1px 1px 2px #000;
+            color: #00ff00;
+            font-size: 18px;
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
             z-index: 10;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
         }
         #endGame {
             position: absolute;
@@ -341,118 +394,137 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: #00ff00;
-            font-size: 24px;
+            font-size: 28px;
             text-align: center;
-            text-shadow: 2px 2px 4px #000;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border: 2px solid #00ff00;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border: 3px solid #00ff00;
+            border-radius: 10px;
             display: none;
             z-index: 20;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
         }
         #titleCard {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #00ff00;
+            width: 650px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 3px solid #00ff00;
+            border-radius: 10px;
             color: #fff;
             text-align: center;
-            font-size: 20px;
-            text-shadow: 0 0 5px #00ff00;
+            font-size: 22px;
+            text-shadow: 0 0 10px #00ff00;
             z-index: 20;
             display: block;
             cursor: pointer;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
         }
         #titleCard h1 {
             margin: 0;
-            font-size: 36px;
+            font-size: 40px;
             color: #00ff00;
+            text-shadow: 0 0 15px #00ff00;
         }
         #titleCard p {
-            margin: 10px 0;
+            margin: 12px 0;
         }
         .background-buildings {
             position: absolute;
             width: 2400px;
-            height: 150px;
-            bottom: 60px;
+            height: 180px;
+            bottom: 80px;
             z-index: 0;
         }
         .midground-buildings {
             position: absolute;
             width: 2400px;
-            height: 200px;
-            bottom: 60px;
+            height: 240px;
+            bottom: 80px;
             z-index: 1;
         }
         .foreground-buildings {
             position: absolute;
             width: 2400px;
-            height: 250px;
-            bottom: 60px;
+            height: 300px;
+            bottom: 80px;
             z-index: 2;
         }
         .building-background {
             position: absolute;
-            background: #8B4513 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQYV2NkYGD4z8DA8P+/v38YGBgYfgCnCjAYxsbGxkYAAOcmC3G8S+obAAAAAElFTkSuQmCC') repeat;
+            background: linear-gradient(to bottom, #4b2e1a, #2e1b10);
             bottom: 0;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
         }
         .building-midground {
             position: absolute;
-            background: #A0522D url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQYV2NkYGD4z8DA8P+/v38YGBgYfgCnCjAYxsbGxkYAAOcmC3G8S+obAAAAAElFTkSuQmCC') repeat;
+            background: linear-gradient(to bottom, #6b3f27, #3f2517);
             bottom: 0;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
         }
         .building-foreground {
             position: absolute;
-            background: #CD5C5C url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAJElEQVQYV2NkYGD4z8DA8P+/v38YGBgYfgCnCjAYxsbGxkYAAOcmC3G8S+obAAAAAElFTkSuQmCC') repeat;
+            background: linear-gradient(to bottom, #9b4c3c, #5c2e24);
             bottom: 0;
+            border-radius: 5px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
         }
         .window-background {
             position: absolute;
-            background: yellow;
-            width: 5px;
-            height: 5px;
+            background: linear-gradient(#ffff99, #ffcc66);
+            width: 8px;
+            height: 12px;
+            border-radius: 2px;
+            box-shadow: 0 0 5px rgba(255, 255, 153, 0.7);
         }
         .window-midground {
             position: absolute;
-            background: yellow;
-            width: 10px;
-            height: 10px;
+            background: linear-gradient(#ffff99, #ffcc66);
+            width: 12px;
+            height: 18px;
+            border-radius: 3px;
+            box-shadow: 0 0 8px rgba(255, 255, 153, 0.7);
         }
         .window-foreground {
             position: absolute;
-            background: yellow;
-            width: 15px;
-            height: 15px;
+            background: linear-gradient(#ffff99, #ffcc66);
+            width: 16px;
+            height: 24px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(255, 255, 153, 0.7);
         }
         .trees {
             position: absolute;
             width: 2400px;
-            height: 100px;
-            bottom: 60px;
+            height: 120px;
+            bottom: 80px;
             z-index: 3;
         }
         .tree {
             position: absolute;
             width: 0;
             height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-bottom: 40px solid #006400;
-            bottom: 10px;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 50px solid #004d00;
+            bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(0, 77, 0, 0.5));
         }
         .tree::after {
             content: '';
             position: absolute;
-            width: 6px;
-            height: 10px;
-            background: #3C2F2F;
-            bottom: -10px;
-            left: -3px;
+            width: 8px;
+            height: 15px;
+            background: linear-gradient(#3c2f2f, #2a1f1f);
+            bottom: -15px;
+            left: -4px;
+            border-radius: 2px;
         }
     </style>
 </head>
@@ -548,38 +620,40 @@
         }
 
         function generateCityDetails() {
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 60; i++) {
                 const detail = document.createElement('div');
                 detail.className = 'city-detail';
-                const size = Math.random() * 5 + 2;
+                const size = Math.random() * 8 + 4;
                 detail.style.width = `${size}px`;
                 detail.style.height = `${size}px`;
                 detail.style.left = `${Math.random() * LAYER_WIDTH}px`;
-                detail.style.top = `${Math.random() * 40 + 10}px`;
-                detail.style.background = `hsl(0, 0%, ${Math.random() * 20 + 40}%)`;
+                detail.style.top = `${Math.random() * 60 + 10}px`;
                 city.appendChild(detail);
             }
         }
 
         function generateBackgroundBuildings() {
             backgroundBuildings.innerHTML = '';
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 12; i++) {
                 const building = document.createElement('div');
                 building.className = 'building-background';
-                const width = Math.random() * 30 + 50;
-                const height = Math.random() * 30 + 30;
+                const width = Math.random() * 40 + 60;
+                const height = Math.random() * 40 + 40;
                 building.style.width = `${width}px`;
                 building.style.height = `${height}px`;
                 building.style.left = `${Math.random() * LAYER_WIDTH}px`;
-                const numWindows = Math.floor(Math.random() * 3) + 1;
-                for (let j = 0; j < numWindows; j++) {
-                    const window = document.createElement('div');
-                    window.className = 'window-background';
-                    const windowX = Math.random() * (width - 5);
-                    const windowY = Math.random() * (height - 5);
-                    window.style.left = `${windowX}px`;
-                    window.style.top = `${windowY}px`;
-                    building.appendChild(window);
+                const windowWidth = 8;
+                const windowHeight = 12;
+                const numWindowsX = Math.floor((width - 10) / (windowWidth + 4)); // Uniform horizontal spacing
+                const numWindowsY = Math.floor((height - 10) / (windowHeight + 4)); // Uniform vertical spacing
+                for (let x = 0; x < numWindowsX; x++) {
+                    for (let y = 0; y < numWindowsY; y++) {
+                        const window = document.createElement('div');
+                        window.className = 'window-background';
+                        window.style.left = `${5 + x * (windowWidth + 4)}px`; // Grid alignment
+                        window.style.top = `${5 + y * (windowHeight + 4)}px`;
+                        building.appendChild(window);
+                    }
                 }
                 backgroundBuildings.appendChild(building);
             }
@@ -587,23 +661,26 @@
 
         function generateMidgroundBuildings() {
             midgroundBuildings.innerHTML = '';
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 18; i++) {
                 const building = document.createElement('div');
                 building.className = 'building-midground';
-                const width = Math.random() * 40 + 80;
-                const height = Math.random() * 40 + 60;
+                const width = Math.random() * 50 + 90;
+                const height = Math.random() * 50 + 80;
                 building.style.width = `${width}px`;
                 building.style.height = `${height}px`;
                 building.style.left = `${Math.random() * LAYER_WIDTH}px`;
-                const numWindows = Math.floor(Math.random() * 4) + 2;
-                for (let j = 0; j < numWindows; j++) {
-                    const window = document.createElement('div');
-                    window.className = 'window-midground';
-                    const windowX = Math.random() * (width - 10);
-                    const windowY = Math.random() * (height - 10);
-                    window.style.left = `${windowX}px`;
-                    window.style.top = `${windowY}px`;
-                    building.appendChild(window);
+                const windowWidth = 12;
+                const windowHeight = 18;
+                const numWindowsX = Math.floor((width - 10) / (windowWidth + 6));
+                const numWindowsY = Math.floor((height - 10) / (windowHeight + 6));
+                for (let x = 0; x < numWindowsX; x++) {
+                    for (let y = 0; y < numWindowsY; y++) {
+                        const window = document.createElement('div');
+                        window.className = 'window-midground';
+                        window.style.left = `${5 + x * (windowWidth + 6)}px`;
+                        window.style.top = `${5 + y * (windowHeight + 6)}px`;
+                        building.appendChild(window);
+                    }
                 }
                 midgroundBuildings.appendChild(building);
             }
@@ -611,23 +688,26 @@
 
         function generateForegroundBuildings() {
             foregroundBuildings.innerHTML = '';
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 12; i++) {
                 const building = document.createElement('div');
                 building.className = 'building-foreground';
-                const width = Math.random() * 50 + 100;
-                const height = Math.random() * 60 + 80;
+                const width = Math.random() * 60 + 120;
+                const height = Math.random() * 80 + 100;
                 building.style.width = `${width}px`;
                 building.style.height = `${height}px`;
                 building.style.left = `${Math.random() * LAYER_WIDTH}px`;
-                const numWindows = Math.floor(Math.random() * 5) + 3;
-                for (let j = 0; j < numWindows; j++) {
-                    const window = document.createElement('div');
-                    window.className = 'window-foreground';
-                    const windowX = Math.random() * (width - 15);
-                    const windowY = Math.random() * (height - 15);
-                    window.style.left = `${windowX}px`;
-                    window.style.top = `${windowY}px`;
-                    building.appendChild(window);
+                const windowWidth = 16;
+                const windowHeight = 24;
+                const numWindowsX = Math.floor((width - 10) / (windowWidth + 8));
+                const numWindowsY = Math.floor((height - 10) / (windowHeight + 8));
+                for (let x = 0; x < numWindowsX; x++) {
+                    for (let y = 0; y < numWindowsY; y++) {
+                        const window = document.createElement('div');
+                        window.className = 'window-foreground';
+                        window.style.left = `${5 + x * (windowWidth + 8)}px`;
+                        window.style.top = `${5 + y * (windowHeight + 8)}px`;
+                        building.appendChild(window);
+                    }
                 }
                 foregroundBuildings.appendChild(building);
             }
@@ -635,7 +715,7 @@
 
         function generateTrees() {
             trees.innerHTML = '';
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 25; i++) {
                 const tree = document.createElement('div');
                 tree.className = 'tree';
                 tree.style.left = `${Math.random() * LAYER_WIDTH}px`;
@@ -653,7 +733,7 @@
                 const r = Math.floor(Math.random() * (210 - 139) + 139);
                 const g = Math.floor(Math.random() * (117 - 69) + 69);
                 const b = Math.floor(Math.random() * (77 - 29) + 29);
-                unit.style.background = `rgb(${r}, ${g}, ${b})`;
+                unit.style.background = `linear-gradient(to bottom, rgb(${r}, ${g}, ${b}), rgb(${r-20}, ${g-20}, ${b-20}))`;
             }
             unit.innerHTML = '<div class="right-arm"></div><div class="left-leg"></div><div class="right-leg"></div>';
             unit.speed = type === 'person' ? 2 : type === 'police' ? 1.5 : 2;
@@ -716,24 +796,19 @@
                     unitsToRemove.push(index);
                     return;
                 }
-                unit.x += scrollSpeed; // Apply scrolling effect
+                unit.x += scrollSpeed;
                 unit.stepTimer += 0.016;
-                const stepInterval = unit.className === 'person' ? 0.5 : 0.3; // Slower civilian steps, faster for police/military
-
+                const stepInterval = unit.className === 'person' ? 0.5 : 0.3;
                 if (unit.stepTimer >= stepInterval) {
                     let direction;
                     if (unit.className === 'person') {
-                        // Civilians run away from UFO
-                        direction = unit.x < ufoX ? -1 : 1; // Move opposite to UFO
-                        if (Math.random() < 0.2) direction *= -1; // 20% chance to zig-zag in panic
+                        direction = unit.x < ufoX ? -1 : 1;
+                        if (Math.random() < 0.2) direction *= -1;
                     } else {
-                        // Police and Military track UFO
-                        direction = unit.x < ufoX ? 1 : -1; // Move toward UFO
+                        direction = unit.x < ufoX ? 1 : -1;
                     }
                     unit.x += unit.speed * direction;
                     unit.stepTimer = 0;
-
-                    // Keep units within canvas bounds with wrapping
                     if (unit.x < -unitWidth) unit.x += 800;
                     if (unit.x > 800) unit.x -= 800;
                 }
@@ -757,7 +832,6 @@
                         civilians.push(spawnUnit('person', Math.random() * 785));
                     }
                 }
-
                 if (elapsedTime >= otherSpawnInterval) {
                     if (police.length < MAX_POLICE && Math.random() < 0.2) {
                         police.push(...spawnGroup('police', Math.floor(Math.random() * 3) + 2));
@@ -772,7 +846,7 @@
 
         function crashUFO() {
             ufo.classList.add('crash');
-            ufo.style.top = '370px';
+            ufo.style.top = '365px';
             setTimeout(() => {
                 endGame.style.display = 'block';
                 endGame.innerHTML = `UFO Destroyed!<br>Damage: 100%<br>Score: ${score}<br>Abductions: ${abductions}<br>Kills: ${kills}<br>Press R to Restart`;
@@ -796,9 +870,9 @@
                 ufoVY *= friction;
 
                 if (ufoX < 0) ufoX = 0, ufoVX = 0;
-                if (ufoX > 740) ufoX = 740, ufoVX = 0;
+                if (ufoX > 730) ufoX = 730, ufoVX = 0;
                 if (ufoY < 0) ufoY = 0, ufoVY = 0;
-                if (ufoY > 370) ufoY = 370, ufoVY = 0;
+                if (ufoY > 365) ufoY = 365, ufoVY = 0;
 
                 ufo.style.left = ufoX + 'px';
                 ufo.style.top = ufoY + 'px';
@@ -834,18 +908,18 @@
                 if (treesX < -LAYER_WIDTH) treesX += LAYER_WIDTH;
                 trees.style.left = treesX + 'px';
 
-                updateUnits(civilians, 15, scrollSpeed);
-                updateUnits(police, 15, scrollSpeed);
-                updateUnits(military, 15, scrollSpeed);
+                updateUnits(civilians, 18, scrollSpeed);
+                updateUnits(police, 18, scrollSpeed);
+                updateUnits(military, 18, scrollSpeed);
                 if (titleCard.style.display === 'none') respawnUnits(currentTime);
 
                 if (provoked && titleCard.style.display === 'none') {
                     for (let i = 0; i < police.length && i < 3; i++) {
                         if (!bulletActive[i] && Math.random() < 0.05 && police[i].x > 0 && police[i].x < 800) {
                             bulletActive[i] = true;
-                            bulletX[i] = police[i].x + 7.5;
-                            bulletY[i] = 340;
-                            let dx = (ufoX + 30) - bulletX[i];
+                            bulletX[i] = police[i].x + 9;
+                            bulletY[i] = 335;
+                            let dx = (ufoX + 35) - bulletX[i];
                             let dy = ufoY - bulletY[i];
                             let dist = Math.sqrt(dx * dx + dy * dy);
                             bulletVX[i] = (dx / dist) * 5;
@@ -858,9 +932,9 @@
                     for (let i = 0; i < military.length && i + 3 < 6; i++) {
                         if (!bulletActive[i + 3] && Math.random() < 0.05 && military[i].x > 0 && military[i].x < 800) {
                             bulletActive[i + 3] = true;
-                            bulletX[i + 3] = military[i].x + 7.5;
-                            bulletY[i + 3] = 340;
-                            let dx = (ufoX + 30) - bulletX[i + 3];
+                            bulletX[i + 3] = military[i].x + 9;
+                            bulletY[i + 3] = 335;
+                            let dx = (ufoX + 35) - bulletX[i + 3];
                             let dy = ufoY - bulletY[i + 3];
                             let dist = Math.sqrt(dx * dx + dy * dy);
                             bulletVX[i + 3] = (dx / dist) * 5;
@@ -878,7 +952,7 @@
                         bulletY[i] += bulletVY[i];
                         bullets[i].style.left = bulletX[i] + 'px';
                         bullets[i].style.top = bulletY[i] + 'px';
-                        if (checkCollision(ufoX, 60, bulletX[i], i < 3 ? 5 : 8) && bulletY[i] < ufoY + 30 && bulletY[i] > ufoY - 15) {
+                        if (checkCollision(ufoX, 70, bulletX[i], i < 3 ? 6 : 10) && bulletY[i] < ufoY + 35 && bulletY[i] > ufoY - 18) {
                             if (!isShielded) damage += (i < 3 ? 1 : 5);
                             bulletActive[i] = false;
                             bullets[i].style.display = 'none';
@@ -896,12 +970,12 @@
                 landingZone.style.left = landingX + 'px';
 
                 if (keys['b'] && titleCard.style.display === 'none') {
-                    blueBeam.style.left = (ufoX + 20) + 'px';
-                    blueBeam.style.top = (ufoY + 30) + 'px';
-                    blueBeam.style.height = (370 - (ufoY + 30)) + 'px';
+                    blueBeam.style.left = (ufoX + 22) + 'px';
+                    blueBeam.style.top = (ufoY + 35) + 'px';
+                    blueBeam.style.height = (365 - (ufoY + 35)) + 'px';
                     blueBeam.style.display = 'block';
                     civilians.forEach((unit, i) => {
-                        if (unit.isActive && checkCollision(ufoX + 20, 20, unit.x, 15)) {
+                        if (unit.isActive && checkCollision(ufoX + 22, 25, unit.x, 18)) {
                             unit.isActive = false;
                             unit.remove();
                             civilians.splice(i, 1);
@@ -911,7 +985,7 @@
                         }
                     });
                     police.forEach((unit, i) => {
-                        if (unit.isActive && checkCollision(ufoX + 20, 20, unit.x, 15)) {
+                        if (unit.isActive && checkCollision(ufoX + 22, 25, unit.x, 18)) {
                             unit.isActive = false;
                             unit.remove();
                             police.splice(i, 1);
@@ -920,7 +994,7 @@
                         }
                     });
                     military.forEach((unit, i) => {
-                        if (unit.isActive && checkCollision(ufoX + 20, 20, unit.x, 15)) {
+                        if (unit.isActive && checkCollision(ufoX + 22, 25, unit.x, 18)) {
                             unit.isActive = false;
                             unit.remove();
                             military.splice(i, 1);
@@ -933,12 +1007,12 @@
                 }
 
                 if (keys['v'] && titleCard.style.display === 'none') {
-                    redBeam.style.left = (ufoX + 20) + 'px';
-                    redBeam.style.top = (ufoY + 30) + 'px';
-                    redBeam.style.height = (370 - (ufoY + 30)) + 'px';
+                    redBeam.style.left = (ufoX + 22) + 'px';
+                    redBeam.style.top = (ufoY + 35) + 'px';
+                    redBeam.style.height = (365 - (ufoY + 35)) + 'px';
                     redBeam.style.display = 'block';
                     civilians.forEach((unit, i) => {
-                        if (unit.isActive && checkCollision(ufoX + 20, 20, unit.x, 15)) {
+                        if (unit.isActive && checkCollision(ufoX + 22, 25, unit.x, 18)) {
                             unit.isActive = false;
                             unit.remove();
                             civilians.splice(i, 1);
@@ -948,7 +1022,7 @@
                         }
                     });
                     police.forEach((unit, i) => {
-                        if (unit.isActive && checkCollision(ufoX + 20, 20, unit.x, 15)) {
+                        if (unit.isActive && checkCollision(ufoX + 22, 25, unit.x, 18)) {
                             unit.isActive = false;
                             unit.remove();
                             police.splice(i, 1);
@@ -958,7 +1032,7 @@
                         }
                     });
                     military.forEach((unit, i) => {
-                        if (unit.isActive && checkCollision(ufoX + 20, 20, unit.x, 15)) {
+                        if (unit.isActive && checkCollision(ufoX + 22, 25, unit.x, 18)) {
                             unit.isActive = false;
                             unit.remove();
                             military.splice(i, 1);
