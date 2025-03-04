@@ -19,14 +19,13 @@
             margin: 20px auto;
             overflow: hidden;
             image-rendering: pixelated;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
         }
         #gameCanvas::before {
             content: '';
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400"><rect width="800" height="400" fill="transparent"/><circle cx="10" cy="20" r="3" fill="white" opacity="0.8"/><circle cx="50" cy="50" r="4" fill="white" opacity="0.9"/><circle cx="80" cy="15" r="2" fill="white" opacity="0.7"/><circle cx="120" cy="70" r="3" fill="white" opacity="0.8"/><circle cx="150" cy="30" r="4" fill="white" opacity="0.9"/><circle cx="200" cy="90" r="2" fill="white" opacity="0.7"/><circle cx="250" cy="10" r="3" fill="white" opacity="0.8"/><circle cx="300" cy="60" r="4" fill="white" opacity="0.9"/><circle cx="350" cy="40" r="2" fill="white" opacity="0.7"/><circle cx="400" cy="80" r="3" fill="white" opacity="0.8"/><circle cx="450" cy="20" r="4" fill="white" opacity="0.9"/><circle cx="500" cy="70" r="2" fill="white" opacity="0.7"/><circle cx="550" cy="30" r="3" fill="white" opacity="0.8"/><circle cx="600" cy="90" r="4" fill="white" opacity="0.9"/><circle cx="650" cy="15" r="2" fill="white" opacity="0.7"/><circle cx="700" cy="60" r="3" fill="white" opacity="0.8"/><circle cx="750" cy="40" r="4" fill="white" opacity="0.9"/><path d="M0,400 Q100,350 200,375 T400,350 T600,375 T800,350 V400 H0 Z" fill="rgba(0, 50, 0, 0.9)" opacity="0.8"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400"><rect width="800" height="400" fill="transparent"/><circle cx="10" cy="20" r="3" fill="white" opacity="0.8"/><circle cx="50" cy="50" r="4" fill="white" opacity="0.9"/><circle cx="80" cy="15" r="2" fill="white" opacity="0.7"/><circle cx="120" cy="70" r="3" fill="white" opacity="0.8"/><circle cx="150" cy="30" r="4" fill="white" opacity="0.9"/><circle cx="200" cy="90" r="2" fill="white" opacity="0.7"/><circle cx="250" cy="10" r="3" fill="white" opacity="0.8"/><circle cx="300" cy="60" r="4" fill="white" opacity="0.9"/><circle cx="350" cy="40" r="2" fill="white" opacity="0.7"/><circle cx="400" cy="80" r="3" fill="white" opacity="0.8"/><circle cx="450" cy="20" r="4" fill="white" opacity="0.9"/><circle cx="500" cy="70" r="2" fill="white" opacity="0.7"/><circle cx="550" cy="30" r="3" fill="white" opacity="0.8"/><circle cx="600" cy="90" r="4" fill="white" opacity="0.9"/><circle cx="650" cy="15" r="2" fill="white" opacity="0.7"/><circle cx="700" cy="60" r="3" fill="white" opacity="0.8"/><circle cx="750" cy="40" r="4" fill="white" opacity="0.9"/><path d="M0,400 Q100,350 200,375 T400,350 T600,375 T800,350 V400 H0 Z" fill="rgba(0,50,0,0.9)" opacity="0.8"/></svg>');
             pointer-events: none;
             z-index: -1;
         }
@@ -36,7 +35,7 @@
             height: 35px;
             background: radial-gradient(circle at 50% 20%, #a0a0a0, #404040);
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.7), 0 10px 15px rgba(0, 0, 0, 0.8), inset 0 5px 10px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); /* Reduced shadow */
             z-index: 5;
             transition: background 0.5s ease-in-out, transform 0.2s ease;
         }
@@ -50,7 +49,6 @@
             background: linear-gradient(90deg, rgba(0, 255, 255, 0.8), rgba(255, 0, 0, 0.8));
             border-radius: 50%;
             animation: pulse 1s infinite;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
         }
         .ufo::after {
             content: '';
@@ -61,12 +59,11 @@
             height: 15px;
             background: linear-gradient(#d0d0d0, #808080);
             border-radius: 50% 50% 0 0;
-            box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.5);
         }
         .ufo.crash {
             background: radial-gradient(circle at 50% 20%, #ff4500, #8b0000);
             transform: rotate(20deg);
-            box-shadow: 0 0 30px rgba(255, 69, 0, 0.9), 0 10px 20px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 0 20px rgba(255, 69, 0, 0.7); /* Reduced shadow */
         }
         @keyframes pulse {
             0%, 100% { opacity: 0.6; transform: scale(1); }
@@ -78,45 +75,34 @@
             height: 50px;
             background: radial-gradient(circle, rgba(0, 255, 255, 0.6), rgba(0, 255, 255, 0));
             border-radius: 50%;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), inset 0 0 15px rgba(0, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); /* Reduced shadow */
             display: none;
             z-index: 6;
-            animation: shieldPulse 1.5s infinite;
-        }
-        @keyframes shieldPulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
         }
         .blueBeam {
             position: absolute;
             width: 25px;
             background: linear-gradient(to bottom, rgba(0, 0, 255, 0.9), rgba(0, 0, 255, 0));
-            box-shadow: 0 0 20px #0000ff, 0 0 40px rgba(0, 0, 255, 0.7);
+            box-shadow: 0 0 15px rgba(0, 0, 255, 0.5); /* Reduced shadow */
             display: none;
             z-index: 4;
-            animation: beamFlicker 0.2s infinite;
         }
         .redBeam {
             position: absolute;
             width: 25px;
             background: linear-gradient(to bottom, rgba(255, 0, 0, 0.9), rgba(255, 0, 0, 0));
-            box-shadow: 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.7);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); /* Reduced shadow */
             display: none;
             z-index: 4;
-            animation: beamFlicker 0.2s infinite;
-        }
-        @keyframes beamFlicker {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 0.7; }
         }
         .city {
             position: absolute;
             width: 2400px;
             height: 80px;
-            background: linear-gradient(to bottom, #2f2f2f, #1a1a1a) repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(255, 255, 255, 0.3) 15px, rgba(255, 255, 255, 0.3) 20px);
+            background: linear-gradient(to bottom, #2f2f2f, #1a1a1a);
             bottom: 0;
             z-index: 2;
-            box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5); /* Reduced shadow */
         }
         .city::before {
             content: '';
@@ -125,7 +111,6 @@
             height: 15px;
             background: linear-gradient(#555, #333);
             top: 0;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
         }
         .city::after {
             content: '';
@@ -134,12 +119,10 @@
             height: 15px;
             background: linear-gradient(#333, #1a1a1a);
             bottom: 0;
-            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5);
         }
         .city-detail {
             position: absolute;
-            background: linear-gradient(45deg, #444, #666);
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+            background: #444;
             border-radius: 2px;
         }
         .person {
@@ -150,7 +133,7 @@
             z-index: 3;
             background: linear-gradient(to bottom, #8b4513, #5c4033);
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Reduced shadow */
         }
         .person::before {
             content: '';
@@ -161,7 +144,6 @@
             border-radius: 50%;
             top: -14px;
             left: 3px;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         .person::after {
             content: '';
@@ -211,7 +193,7 @@
             top: 335px;
             z-index: 3;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 205, 0.5);
+            box-shadow: 0 0 5px rgba(0, 0, 205, 0.3); /* Reduced shadow */
         }
         .police::before {
             content: '';
@@ -222,7 +204,6 @@
             border-radius: 50%;
             top: -14px;
             left: 3px;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         .police::after {
             content: '';
@@ -233,7 +214,6 @@
             top: -18px;
             left: 1px;
             border-radius: 3px 3px 0 0;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         .police .right-arm {
             position: absolute;
@@ -273,7 +253,7 @@
             top: 335px;
             z-index: 3;
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 100, 0, 0.5);
+            box-shadow: 0 0 5px rgba(0, 100, 0, 0.3); /* Reduced shadow */
         }
         .military::before {
             content: '';
@@ -284,7 +264,6 @@
             border-radius: 50%;
             top: -14px;
             left: 3px;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         .military::after {
             content: '';
@@ -295,7 +274,6 @@
             top: -18px;
             left: 1px;
             border-radius: 4px 4px 0 0;
-            box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.4);
         }
         .military .right-arm {
             position: absolute;
@@ -354,7 +332,6 @@
             border-radius: 3px;
             display: none;
             z-index: 4;
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
         }
         .military-bullet {
             position: absolute;
@@ -364,7 +341,6 @@
             border-radius: 4px;
             display: none;
             z-index: 4;
-            box-shadow: 0 0 8px rgba(255, 255, 0, 0.7);
         }
         .landingZone {
             position: absolute;
@@ -374,7 +350,6 @@
             border: 3px dashed #ff9900;
             top: 355px;
             z-index: 2;
-            box-shadow: 0 0 15px rgba(255, 255, 0, 0.6);
         }
         #ui {
             position: absolute;
@@ -382,7 +357,7 @@
             left: 10px;
             color: #00ff00;
             font-size: 18px;
-            text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+            text-shadow: 0 0 5px #00ff00;
             z-index: 10;
             background: rgba(0, 0, 0, 0.7);
             padding: 5px 10px;
@@ -396,14 +371,13 @@
             color: #00ff00;
             font-size: 28px;
             text-align: center;
-            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            text-shadow: 0 0 10px #00ff00;
             background: rgba(0, 0, 0, 0.9);
             padding: 30px;
             border: 3px solid #00ff00;
             border-radius: 10px;
             display: none;
             z-index: 20;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
         }
         #titleCard {
             position: absolute;
@@ -422,7 +396,6 @@
             z-index: 20;
             display: block;
             cursor: pointer;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
         }
         #titleCard h1 {
             margin: 0;
@@ -459,45 +432,42 @@
             background: linear-gradient(to bottom, #4b2e1a, #2e1b10);
             bottom: 0;
             border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Reduced shadow */
         }
         .building-midground {
             position: absolute;
             background: linear-gradient(to bottom, #6b3f27, #3f2517);
             bottom: 0;
             border-radius: 5px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6); /* Reduced shadow */
         }
         .building-foreground {
             position: absolute;
             background: linear-gradient(to bottom, #9b4c3c, #5c2e24);
             bottom: 0;
             border-radius: 5px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); /* Reduced shadow */
         }
         .window-background {
             position: absolute;
-            background: linear-gradient(#ffff99, #ffcc66);
+            background: #ffff99; /* Simplified to solid color */
             width: 8px;
             height: 12px;
             border-radius: 2px;
-            box-shadow: 0 0 5px rgba(255, 255, 153, 0.7);
         }
         .window-midground {
             position: absolute;
-            background: linear-gradient(#ffff99, #ffcc66);
+            background: #ffff99;
             width: 12px;
             height: 18px;
             border-radius: 3px;
-            box-shadow: 0 0 8px rgba(255, 255, 153, 0.7);
         }
         .window-foreground {
             position: absolute;
-            background: linear-gradient(#ffff99, #ffcc66);
+            background: #ffff99;
             width: 16px;
             height: 24px;
             border-radius: 4px;
-            box-shadow: 0 0 10px rgba(255, 255, 153, 0.7);
         }
         .trees {
             position: absolute;
@@ -514,14 +484,13 @@
             border-right: 20px solid transparent;
             border-bottom: 50px solid #004d00;
             bottom: 15px;
-            filter: drop-shadow(0 0 10px rgba(0, 77, 0, 0.5));
         }
         .tree::after {
             content: '';
             position: absolute;
             width: 8px;
             height: 15px;
-            background: linear-gradient(#3c2f2f, #2a1f1f);
+            background: #3c2f2f;
             bottom: -15px;
             left: -4px;
             border-radius: 2px;
@@ -591,24 +560,20 @@
         let isShielded = false;
         let provoked = false;
         let lastSpawnTime = 0;
+        let lastUpdateTime = 0;
         const maxSpeed = 5, friction = 0.95;
         const LAYER_WIDTH = 2400;
         const MAX_CIVILIANS = 10, MAX_POLICE = 6, MAX_MILITARY = 4;
+        const UPDATE_INTERVAL = 16; // ~60 FPS throttle
 
         const keys = {};
         window.addEventListener('keydown', (e) => {
             keys[e.key] = true;
-            if (e.key === ' ') {
-                isShielded = true;
-                shield.style.display = 'block';
-            }
+            if (e.key === ' ') isShielded = true, shield.style.display = 'block';
         });
         window.addEventListener('keyup', (e) => {
             keys[e.key] = false;
-            if (e.key === ' ') {
-                isShielded = false;
-                shield.style.display = 'none';
-            }
+            if (e.key === ' ') isShielded = false, shield.style.display = 'none';
         });
 
         titleCard.addEventListener('click', () => {
@@ -620,7 +585,7 @@
         }
 
         function generateCityDetails() {
-            for (let i = 0; i < 60; i++) {
+            for (let i = 0; i < 40; i++) { // Reduced from 60
                 const detail = document.createElement('div');
                 detail.className = 'city-detail';
                 const size = Math.random() * 8 + 4;
@@ -634,24 +599,20 @@
 
         function generateBackgroundBuildings() {
             backgroundBuildings.innerHTML = '';
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 10; i++) { // Reduced from 12
                 const building = document.createElement('div');
                 building.className = 'building-background';
                 const width = Math.random() * 40 + 60;
                 const height = Math.random() * 40 + 40;
-                building.style.width = `${width}px`;
-                building.style.height = `${height}px`;
-                building.style.left = `${Math.random() * LAYER_WIDTH}px`;
-                const windowWidth = 8;
-                const windowHeight = 12;
-                const numWindowsX = Math.floor((width - 10) / (windowWidth + 4)); // Uniform horizontal spacing
-                const numWindowsY = Math.floor((height - 10) / (windowHeight + 4)); // Uniform vertical spacing
+                building.style.cssText = `width: ${width}px; height: ${height}px; left: ${Math.random() * LAYER_WIDTH}px;`;
+                const windowWidth = 8, windowHeight = 12;
+                const numWindowsX = Math.min(3, Math.floor((width - 10) / (windowWidth + 4))); // Cap at 3
+                const numWindowsY = Math.min(2, Math.floor((height - 10) / (windowHeight + 4))); // Cap at 2
                 for (let x = 0; x < numWindowsX; x++) {
                     for (let y = 0; y < numWindowsY; y++) {
                         const window = document.createElement('div');
                         window.className = 'window-background';
-                        window.style.left = `${5 + x * (windowWidth + 4)}px`; // Grid alignment
-                        window.style.top = `${5 + y * (windowHeight + 4)}px`;
+                        window.style.cssText = `left: ${5 + x * (windowWidth + 4)}px; top: ${5 + y * (windowHeight + 4)}px;`;
                         building.appendChild(window);
                     }
                 }
@@ -661,24 +622,20 @@
 
         function generateMidgroundBuildings() {
             midgroundBuildings.innerHTML = '';
-            for (let i = 0; i < 18; i++) {
+            for (let i = 0; i < 12; i++) { // Reduced from 18
                 const building = document.createElement('div');
                 building.className = 'building-midground';
                 const width = Math.random() * 50 + 90;
                 const height = Math.random() * 50 + 80;
-                building.style.width = `${width}px`;
-                building.style.height = `${height}px`;
-                building.style.left = `${Math.random() * LAYER_WIDTH}px`;
-                const windowWidth = 12;
-                const windowHeight = 18;
-                const numWindowsX = Math.floor((width - 10) / (windowWidth + 6));
-                const numWindowsY = Math.floor((height - 10) / (windowHeight + 6));
+                building.style.cssText = `width: ${width}px; height: ${height}px; left: ${Math.random() * LAYER_WIDTH}px;`;
+                const windowWidth = 12, windowHeight = 18;
+                const numWindowsX = Math.min(3, Math.floor((width - 10) / (windowWidth + 6)));
+                const numWindowsY = Math.min(3, Math.floor((height - 10) / (windowHeight + 6)));
                 for (let x = 0; x < numWindowsX; x++) {
                     for (let y = 0; y < numWindowsY; y++) {
                         const window = document.createElement('div');
                         window.className = 'window-midground';
-                        window.style.left = `${5 + x * (windowWidth + 6)}px`;
-                        window.style.top = `${5 + y * (windowHeight + 6)}px`;
+                        window.style.cssText = `left: ${5 + x * (windowWidth + 6)}px; top: ${5 + y * (windowHeight + 6)}px;`;
                         building.appendChild(window);
                     }
                 }
@@ -688,24 +645,20 @@
 
         function generateForegroundBuildings() {
             foregroundBuildings.innerHTML = '';
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 8; i++) { // Reduced from 12
                 const building = document.createElement('div');
                 building.className = 'building-foreground';
                 const width = Math.random() * 60 + 120;
                 const height = Math.random() * 80 + 100;
-                building.style.width = `${width}px`;
-                building.style.height = `${height}px`;
-                building.style.left = `${Math.random() * LAYER_WIDTH}px`;
-                const windowWidth = 16;
-                const windowHeight = 24;
-                const numWindowsX = Math.floor((width - 10) / (windowWidth + 8));
-                const numWindowsY = Math.floor((height - 10) / (windowHeight + 8));
+                building.style.cssText = `width: ${width}px; height: ${height}px; left: ${Math.random() * LAYER_WIDTH}px;`;
+                const windowWidth = 16, windowHeight = 24;
+                const numWindowsX = Math.min(4, Math.floor((width - 10) / (windowWidth + 8)));
+                const numWindowsY = Math.min(4, Math.floor((height - 10) / (windowHeight + 8)));
                 for (let x = 0; x < numWindowsX; x++) {
                     for (let y = 0; y < numWindowsY; y++) {
                         const window = document.createElement('div');
                         window.className = 'window-foreground';
-                        window.style.left = `${5 + x * (windowWidth + 8)}px`;
-                        window.style.top = `${5 + y * (windowHeight + 8)}px`;
+                        window.style.cssText = `left: ${5 + x * (windowWidth + 8)}px; top: ${5 + y * (windowHeight + 8)}px;`;
                         building.appendChild(window);
                     }
                 }
@@ -715,7 +668,7 @@
 
         function generateTrees() {
             trees.innerHTML = '';
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 15; i++) { // Reduced from 25
                 const tree = document.createElement('div');
                 tree.className = 'tree';
                 tree.style.left = `${Math.random() * LAYER_WIDTH}px`;
@@ -746,9 +699,7 @@
         function spawnGroup(type, count) {
             const baseX = Math.random() * 785;
             const group = [];
-            for (let i = 0; i < count; i++) {
-                group.push(spawnUnit(type, baseX, count));
-            }
+            for (let i = 0; i < count; i++) group.push(spawnUnit(type, baseX, count));
             return group;
         }
 
@@ -778,10 +729,7 @@
             for (let i = 0; i < MAX_CIVILIANS; i++) civilians.push(spawnUnit('person', Math.random() * 785));
             for (let i = 0; i < MAX_POLICE / 2; i++) police.push(...spawnGroup('police', Math.floor(Math.random() * 3) + 2));
             for (let i = 0; i < MAX_MILITARY / 2; i++) military.push(...spawnGroup('military', Math.floor(Math.random() * 3) + 2));
-            for (let i = 0; i < bullets.length; i++) {
-                bulletActive[i] = false;
-                bullets[i].style.display = 'none';
-            }
+            for (let i = 0; i < bullets.length; i++) bulletActive[i] = false, bullets[i].style.display = 'none';
             landingX = 200; landingZone.style.left = landingX + 'px';
             endGame.style.display = 'none';
             ufo.classList.remove('crash');
@@ -800,13 +748,8 @@
                 unit.stepTimer += 0.016;
                 const stepInterval = unit.className === 'person' ? 0.5 : 0.3;
                 if (unit.stepTimer >= stepInterval) {
-                    let direction;
-                    if (unit.className === 'person') {
-                        direction = unit.x < ufoX ? -1 : 1;
-                        if (Math.random() < 0.2) direction *= -1;
-                    } else {
-                        direction = unit.x < ufoX ? 1 : -1;
-                    }
+                    let direction = unit.className === 'person' ? (unit.x < ufoX ? -1 : 1) : (unit.x < ufoX ? 1 : -1);
+                    if (unit.className === 'person' && Math.random() < 0.2) direction *= -1;
                     unit.x += unit.speed * direction;
                     unit.stepTimer = 0;
                     if (unit.x < -unitWidth) unit.x += 800;
@@ -822,23 +765,13 @@
 
         function respawnUnits(currentTime) {
             const elapsedTime = currentTime - lastSpawnTime;
-            const civilianSpawnInterval = 1;
-            const otherSpawnInterval = 2;
-
-            if (elapsedTime >= civilianSpawnInterval) {
-                if (civilians.length < MAX_CIVILIANS) {
-                    const spawnChance = civilians.length < MAX_CIVILIANS / 2 ? 0.8 : 0.5;
-                    if (Math.random() < spawnChance) {
-                        civilians.push(spawnUnit('person', Math.random() * 785));
-                    }
+            if (elapsedTime >= 1) {
+                if (civilians.length < MAX_CIVILIANS && Math.random() < (civilians.length < MAX_CIVILIANS / 2 ? 0.8 : 0.5)) {
+                    civilians.push(spawnUnit('person', Math.random() * 785));
                 }
-                if (elapsedTime >= otherSpawnInterval) {
-                    if (police.length < MAX_POLICE && Math.random() < 0.2) {
-                        police.push(...spawnGroup('police', Math.floor(Math.random() * 3) + 2));
-                    }
-                    if (military.length < MAX_MILITARY && Math.random() < 0.15) {
-                        military.push(...spawnGroup('military', Math.floor(Math.random() * 3) + 2));
-                    }
+                if (elapsedTime >= 2) {
+                    if (police.length < MAX_POLICE && Math.random() < 0.2) police.push(...spawnGroup('police', Math.floor(Math.random() * 3) + 2));
+                    if (military.length < MAX_MILITARY && Math.random() < 0.15) military.push(...spawnGroup('military', Math.floor(Math.random() * 3) + 2));
                     lastSpawnTime = currentTime;
                 }
             }
@@ -853,9 +786,16 @@
             }, 2000);
         }
 
-        function update() {
-            const currentTime = performance.now() / 1000;
+        function update(timestamp) {
+            if (!lastUpdateTime) lastUpdateTime = timestamp;
+            const delta = timestamp - lastUpdateTime;
+            if (delta < UPDATE_INTERVAL) {
+                requestAnimationFrame(update);
+                return;
+            }
+            lastUpdateTime = timestamp;
 
+            const currentTime = timestamp / 1000;
             if (damage < 100 && timer > 0) {
                 if (keys['ArrowLeft']) ufoVX -= 0.3;
                 if (keys['ArrowRight']) ufoVX += 0.3;
@@ -876,36 +816,22 @@
 
                 ufo.style.left = ufoX + 'px';
                 ufo.style.top = ufoY + 'px';
-
-                if (isShielded) {
-                    shield.style.left = (ufoX - 5) + 'px';
-                    shield.style.top = (ufoY - 5) + 'px';
-                }
+                if (isShielded) shield.style.cssText = `left: ${ufoX - 5}px; top: ${ufoY - 5}px; display: block;`;
 
                 let scrollSpeed = ufoVX * -1;
-                cityX += scrollSpeed;
-                if (cityX > 800) cityX -= LAYER_WIDTH;
-                if (cityX < -LAYER_WIDTH) cityX += LAYER_WIDTH;
+                cityX += scrollSpeed; if (cityX > 800) cityX -= LAYER_WIDTH; if (cityX < -LAYER_WIDTH) cityX += LAYER_WIDTH;
                 city.style.left = cityX + 'px';
 
-                backgroundBuildingsX += scrollSpeed * 0.2;
-                if (backgroundBuildingsX > 800) backgroundBuildingsX -= LAYER_WIDTH;
-                if (backgroundBuildingsX < -LAYER_WIDTH) backgroundBuildingsX += LAYER_WIDTH;
+                backgroundBuildingsX += scrollSpeed * 0.2; if (backgroundBuildingsX > 800) backgroundBuildingsX -= LAYER_WIDTH; if (backgroundBuildingsX < -LAYER_WIDTH) backgroundBuildingsX += LAYER_WIDTH;
                 backgroundBuildings.style.left = backgroundBuildingsX + 'px';
 
-                midgroundBuildingsX += scrollSpeed * 0.4;
-                if (midgroundBuildingsX > 800) midgroundBuildingsX -= LAYER_WIDTH;
-                if (midgroundBuildingsX < -LAYER_WIDTH) midgroundBuildingsX += LAYER_WIDTH;
+                midgroundBuildingsX += scrollSpeed * 0.4; if (midgroundBuildingsX > 800) midgroundBuildingsX -= LAYER_WIDTH; if (midgroundBuildingsX < -LAYER_WIDTH) midgroundBuildingsX += LAYER_WIDTH;
                 midgroundBuildings.style.left = midgroundBuildingsX + 'px';
 
-                foregroundBuildingsX += scrollSpeed * 0.6;
-                if (foregroundBuildingsX > 800) foregroundBuildingsX -= LAYER_WIDTH;
-                if (foregroundBuildingsX < -LAYER_WIDTH) foregroundBuildingsX += LAYER_WIDTH;
+                foregroundBuildingsX += scrollSpeed * 0.6; if (foregroundBuildingsX > 800) foregroundBuildingsX -= LAYER_WIDTH; if (foregroundBuildingsX < -LAYER_WIDTH) foregroundBuildingsX += LAYER_WIDTH;
                 foregroundBuildings.style.left = foregroundBuildingsX + 'px';
 
-                treesX += scrollSpeed * 0.8;
-                if (treesX > 800) treesX -= LAYER_WIDTH;
-                if (treesX < -LAYER_WIDTH) treesX += LAYER_WIDTH;
+                treesX += scrollSpeed * 0.8; if (treesX > 800) treesX -= LAYER_WIDTH; if (treesX < -LAYER_WIDTH) treesX += LAYER_WIDTH;
                 trees.style.left = treesX + 'px';
 
                 updateUnits(civilians, 18, scrollSpeed);
@@ -914,34 +840,29 @@
                 if (titleCard.style.display === 'none') respawnUnits(currentTime);
 
                 if (provoked && titleCard.style.display === 'none') {
-                    for (let i = 0; i < police.length && i < 3; i++) {
+                    for (let i = 0; i < Math.min(police.length, 3); i++) {
                         if (!bulletActive[i] && Math.random() < 0.05 && police[i].x > 0 && police[i].x < 800) {
                             bulletActive[i] = true;
                             bulletX[i] = police[i].x + 9;
                             bulletY[i] = 335;
-                            let dx = (ufoX + 35) - bulletX[i];
-                            let dy = ufoY - bulletY[i];
+                            let dx = (ufoX + 35) - bulletX[i], dy = ufoY - bulletY[i];
                             let dist = Math.sqrt(dx * dx + dy * dy);
                             bulletVX[i] = (dx / dist) * 5;
                             bulletVY[i] = (dy / dist) * 5;
-                            bullets[i].style.left = bulletX[i] + 'px';
-                            bullets[i].style.top = bulletY[i] + 'px';
-                            bullets[i].style.display = 'block';
+                            bullets[i].style.cssText = `left: ${bulletX[i]}px; top: ${bulletY[i]}px; display: block;`;
                         }
                     }
-                    for (let i = 0; i < military.length && i + 3 < 6; i++) {
-                        if (!bulletActive[i + 3] && Math.random() < 0.05 && military[i].x > 0 && military[i].x < 800) {
-                            bulletActive[i + 3] = true;
-                            bulletX[i + 3] = military[i].x + 9;
-                            bulletY[i + 3] = 335;
-                            let dx = (ufoX + 35) - bulletX[i + 3];
-                            let dy = ufoY - bulletY[i + 3];
+                    for (let i = 0; i < Math.min(military.length, 3); i++) {
+                        const idx = i + 3;
+                        if (!bulletActive[idx] && Math.random() < 0.05 && military[i].x > 0 && military[i].x < 800) {
+                            bulletActive[idx] = true;
+                            bulletX[idx] = military[i].x + 9;
+                            bulletY[idx] = 335;
+                            let dx = (ufoX + 35) - bulletX[idx], dy = ufoY - bulletY[idx];
                             let dist = Math.sqrt(dx * dx + dy * dy);
-                            bulletVX[i + 3] = (dx / dist) * 5;
-                            bulletVY[i + 3] = (dy / dist) * 5;
-                            bullets[i + 3].style.left = bulletX[i + 3] + 'px';
-                            bullets[i + 3].style.top = bulletY[i + 3] + 'px';
-                            bullets[i + 3].style.display = 'block';
+                            bulletVX[idx] = (dx / dist) * 5;
+                            bulletVY[idx] = (dy / dist) * 5;
+                            bullets[idx].style.cssText = `left: ${bulletX[idx]}px; top: ${bulletY[idx]}px; display: block;`;
                         }
                     }
                 }
@@ -950,8 +871,7 @@
                     if (bulletActive[i]) {
                         bulletX[i] += bulletVX[i];
                         bulletY[i] += bulletVY[i];
-                        bullets[i].style.left = bulletX[i] + 'px';
-                        bullets[i].style.top = bulletY[i] + 'px';
+                        bullets[i].style.cssText = `left: ${bulletX[i]}px; top: ${bulletY[i]}px; display: block;`;
                         if (checkCollision(ufoX, 70, bulletX[i], i < 3 ? 6 : 10) && bulletY[i] < ufoY + 35 && bulletY[i] > ufoY - 18) {
                             if (!isShielded) damage += (i < 3 ? 1 : 5);
                             bulletActive[i] = false;
@@ -970,10 +890,7 @@
                 landingZone.style.left = landingX + 'px';
 
                 if (keys['b'] && titleCard.style.display === 'none') {
-                    blueBeam.style.left = (ufoX + 22) + 'px';
-                    blueBeam.style.top = (ufoY + 35) + 'px';
-                    blueBeam.style.height = (365 - (ufoY + 35)) + 'px';
-                    blueBeam.style.display = 'block';
+                    blueBeam.style.cssText = `left: ${ufoX + 22}px; top: ${ufoY + 35}px; height: ${365 - (ufoY + 35)}px; display: block;`;
                     civilians.forEach((unit, i) => {
                         if (unit.isActive && checkCollision(ufoX + 22, 25, unit.x, 18)) {
                             unit.isActive = false;
@@ -1007,10 +924,7 @@
                 }
 
                 if (keys['v'] && titleCard.style.display === 'none') {
-                    redBeam.style.left = (ufoX + 22) + 'px';
-                    redBeam.style.top = (ufoY + 35) + 'px';
-                    redBeam.style.height = (365 - (ufoY + 35)) + 'px';
-                    redBeam.style.display = 'block';
+                    redBeam.style.cssText = `left: ${ufoX + 22}px; top: ${ufoY + 35}px; height: ${365 - (ufoY + 35)}px; display: block;`;
                     civilians.forEach((unit, i) => {
                         if (unit.isActive && checkCollision(ufoX + 22, 25, unit.x, 18)) {
                             unit.isActive = false;
@@ -1047,12 +961,9 @@
 
                 timer -= 0.016;
                 if (timer < 0) timer = 0;
-
                 ui.textContent = `Damage: ${Math.round(damage)}% | Time: ${Math.round(timer)} | Score: ${score}`;
 
-                if (damage >= 100) {
-                    crashUFO();
-                }
+                if (damage >= 100) crashUFO();
             } else if (timer <= 0) {
                 endGame.style.display = 'block';
                 endGame.innerHTML = `Time's Up!<br>Damage: ${Math.round(damage)}%<br>Score: ${score}<br>Abductions: ${abductions}<br>Kills: ${kills}<br>Press R to Restart`;
@@ -1064,7 +975,7 @@
         }
 
         resetGame();
-        update();
+        requestAnimationFrame(update);
     </script>
 </body>
 </html>
